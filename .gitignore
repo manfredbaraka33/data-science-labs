@@ -1,0 +1,7 @@
+.lab_env/
+data/
+*.csv
+.ipynb_checkpoints/
+
+test.ipynb
+week1.ipynb
