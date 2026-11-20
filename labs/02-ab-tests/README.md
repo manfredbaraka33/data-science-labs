@@ -161,3 +161,41 @@ Both emails bring more visits than no email; the men's email brings the most (ab
 Recommendation: send emails. If only one can be sent, send the men's email.
 
 Limits: the data has no dates, so the effect over time could not be checked; only visits were tested, not purchases.
+
+
+
+## Project D: Which of three promotions sells the most?
+
+Notebook: `project_d_three_promotions.ipynb`
+Data: public fast-food marketing test dataset (Kaggle / IBM Watson sample), all 3 promotions: 137 restaurants, 4 weeks.
+
+### Question
+A fast-food company tested three promotions for a new menu item. Which one sells the most?
+
+### Method
+- Each restaurant was given one promotion by chance and kept it for 4 weeks.
+- One result per restaurant: the average of its 4 weekly sales (548 rows became 137).
+- Outcome: average weekly sales in thousands of dollars, a number, so the main test is the t-test.
+- Three groups, so the promotions were compared two at a time (3 pairs), with the stricter line 0.05 ÷ 3 = 0.0167.
+- Sample size: with the stricter line, 56 restaurants per promotion are needed to catch a gap of 10 thousand dollars (spread 16, power 80%). The test had only 43, 47 and 47, so its power was about 70% (limitation).
+- Group split: 31.4% / 34.3% / 34.3% (split check p = 0.89), with a similar mix of small, medium and large areas.
+- Sales stayed stable over the 4 weeks for all three promotions.
+
+### Results
+
+| Promotion | Restaurants | Average weekly sales (thousand $) |
+|-----------|------------:|----------------------------------:|
+| 1 | 43 | 58.1 |
+| 2 | 47 | 47.3 |
+| 3 | 47 | 55.4 |
+
+| Pair | Gap (thousand $) | p-value | Cohen's d |
+|------|-----------------:|--------:|----------:|
+| 1 vs 2 | 10.8 | 0.0012 | 0.70 (medium to large) |
+| 3 vs 2 | 8.0 | 0.0135 | 0.52 (medium) |
+| 1 vs 3 | 2.7 | 0.43 | not calculated (not real) |
+
+### Decision
+Promotions 1 and 3 both sell clearly more than promotion 2 (p below 0.0167). There is no real difference between promotions 1 and 3 (p = 0.43): their gap is just chance.
+
+Recommendation: stop using promotion 2. Choose between promotions 1 and 3 by cost. For a clear winner between them, run a new test of 1 against 3 with many more restaurants.
