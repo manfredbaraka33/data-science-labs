@@ -1,5 +1,7 @@
 # Lab 02: Two A/B tests (SMS reminders and a discharge checklist)
 
+Notebook: lab_sms_reminder_analysis.ipynb
+
 Practice data, created in Python with a fixed seed so the results can be repeated.
 
 ## Test A: Do SMS reminders reduce missed appointments?
@@ -49,3 +51,37 @@ p is below 0.05, so the shorter stay is very unlikely to be chance. The checklis
 
 ## Files
 - `ab_tests.ipynb`: the notebook with all code and results
+
+
+
+
+## Project A: Does a new landing page make more visitors buy?
+
+Notebook: `project_a_landing_page.ipynb`
+Data: public A/B test dataset from an online shop (Udacity practice data), 294,478 visits.
+
+### Question
+An online shop built a new landing page (the first page visitors see). Does it make more visitors buy than the old page?
+
+### Method
+- Visitors were split by chance into two groups: control (old page) and treatment (new page).
+- Outcome: did the visitor buy? (yes/no), so the main test is the chi-square test.
+- Data cleaning: removed 3,893 rows where the visitor saw the wrong page for their group, and kept each visitor only once. 290,584 visitors remained.
+- Sample size: 17,163 visitors per group are needed to catch a rise from 12% to 13% (0.05 line, power 80%). The test had about 145,000 per group.
+- Group split: 49.99% / 50.01% (split check p = 0.95), so the split was fair.
+
+### Results
+
+| Group | Visitors | Bought | Bought (%) |
+|-------|---------:|-------:|-----------:|
+| Old page (control) | 145,274 | 17,489 | 12.04% |
+| New page (treatment) | 145,310 | 17,264 | 11.88% |
+
+Chi-square test: p = 0.19
+
+Week by week, both pages stayed almost the same (between 11.8% and 12.3%), so there was no early effect that faded.
+
+### Decision
+The p-value (0.19) is above 0.05, so the null hypothesis stays: the new page makes no real difference to buying. The test was large enough to catch a 1-point rise, so this "no difference" can be trusted.
+
+Recommendation: keep the old page. The new page costs money and does not bring more buyers.
