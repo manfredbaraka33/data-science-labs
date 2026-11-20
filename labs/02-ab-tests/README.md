@@ -121,3 +121,43 @@ Week by week, the gap stayed about the same (promotion 1: 56.9 to 58.8; promotio
 The p-value (0.0012) is below 0.05, so the difference is real. Promotion 1 sold about 10.8 thousand dollars more per restaurant per week, more than the 10 thousand gap the company said was worth acting on.
 
 Recommendation: use promotion 1, not promotion 2.
+
+
+
+## Project C: Which email brings more customers to the website?
+
+Notebook: `project_c_emails.ipynb`
+Data: real email test by a clothes shop, shared publicly by Kevin Hillstrom (MineThatData E-Mail Challenge, 2008), 64,000 customers.
+
+### Question
+The shop prepared two advertisement emails: one with men's clothes and one with women's clothes. Does either email make more customers visit the website, compared with sending no email? Which one works best?
+
+### Method
+- Customers were split by chance into three groups: Mens E-Mail, Womens E-Mail, No E-Mail (the comparison group). The email was not chosen by gender.
+- Outcome: did the customer visit the website in the two weeks after the email day? (yes/no), so the main test is the chi-square test.
+- Three groups, so the groups were compared two at a time (3 pairs), with the stricter line 0.05 ÷ 3 = 0.0167.
+- Sample size: 5,519 customers per group are needed to catch a rise from 11% to 13% (line 0.0167, power 80%). Each group had about 21,300.
+- Group split: 33.42% / 33.29% / 33.29% (split check p = 0.90), so the split was fair.
+
+### Results
+
+| Group | Customers | Visited | Visited (%) |
+|-------|----------:|--------:|------------:|
+| Mens E-Mail | 21,307 | 3,894 | 18.28% |
+| Womens E-Mail | 21,387 | 3,238 | 15.14% |
+| No E-Mail | 21,306 | 2,262 | 10.62% |
+
+| Pair | Difference | p-value | Cramér's V |
+|------|-----------:|--------:|-----------:|
+| Mens vs No email | +7.66 points | 7.8e-112 | 0.109 |
+| Womens vs No email | +4.52 points | 3.9e-44 | 0.068 |
+| Mens vs Womens | +3.14 points | 4.3e-18 | 0.042 |
+
+All three p-values are below 0.0167, so all three differences are real.
+
+### Decision
+Both emails bring more visits than no email; the men's email brings the most (about 72% more visitors than no email). Cramér's V is small because most customers do not visit in any group, but the gain is large for the business.
+
+Recommendation: send emails. If only one can be sent, send the men's email.
+
+Limits: the data has no dates, so the effect over time could not be checked; only visits were tested, not purchases.
