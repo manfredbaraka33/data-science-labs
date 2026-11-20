@@ -85,3 +85,39 @@ Week by week, both pages stayed almost the same (between 11.8% and 12.3%), so th
 The p-value (0.19) is above 0.05, so the null hypothesis stays: the new page makes no real difference to buying. The test was large enough to catch a 1-point rise, so this "no difference" can be trusted.
 
 Recommendation: keep the old page. The new page costs money and does not bring more buyers.
+
+
+
+
+## Project B: Which of two promotions sells more?
+
+Notebook: `project_b_promotions.ipynb`
+Data: public fast-food marketing test dataset (Kaggle / IBM Watson sample), promotions 1 and 2 only: 90 restaurants, 4 weeks.
+
+### Question
+A fast-food company is adding a new item to its menu. Does promotion 1 or promotion 2 sell more of it?
+
+### Method
+- Each restaurant was given one promotion by chance and kept it for 4 weeks (randomized by restaurant, because all customers of a restaurant see the same advertisement).
+- Checked that no restaurant had more than one promotion.
+- One result per restaurant: the average of its 4 weekly sales.
+- Outcome: average weekly sales in thousands of dollars, a number, so the main test is the t-test.
+- Sample size: 42 restaurants per promotion are needed to catch a gap of 10 thousand dollars (spread 16, effect size 0.625, 0.05 line, power 80%). The test had 43 and 47.
+- Group split: 43 / 47 restaurants (47.8% / 52.2%, split check p = 0.67), with a similar mix of small, medium and large areas.
+
+### Results
+
+| Promotion | Restaurants | Average weekly sales (thousand $) |
+|-----------|------------:|----------------------------------:|
+| 1 | 43 | 58.1 |
+| 2 | 47 | 47.3 |
+
+t-test: p = 0.0012
+Cohen's d = 0.70 (medium to large)
+
+Week by week, the gap stayed about the same (promotion 1: 56.9 to 58.8; promotion 2: 46.3 to 47.7), so the effect did not fade.
+
+### Decision
+The p-value (0.0012) is below 0.05, so the difference is real. Promotion 1 sold about 10.8 thousand dollars more per restaurant per week, more than the 10 thousand gap the company said was worth acting on.
+
+Recommendation: use promotion 1, not promotion 2.
